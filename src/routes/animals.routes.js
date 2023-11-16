@@ -15,3 +15,5 @@ animalsRouter.get("/:id", getAnimalById);
 animalsRouter.post("/", addAnimal);
 animalsRouter.put("/:id", updateAnimal);
 animalsRouter.delete("/:id", deleteAnimal);
+
+export default animalsRouter;
