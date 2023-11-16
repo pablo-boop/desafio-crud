@@ -5,14 +5,25 @@ const list = new AnimalList();
 
 export const getAnimals = (req, res) => {
     const animals = list.getAnimals();
-    const filterTypes = animals.map((animal) => animal.type)
+    const type = req.query.type;
+    
+    if (type) {
+        const filterTypes = animals.filter((animal) => animal.type === type);
 
-    if (animals.length) {
-        return res.status(200).send({ todosAnimais: list.animals.length, animaisPorTipo: filterTypes, animals })
+        if (filterTypes.length > 0) {
+            return res.status(200).send({ todosAnimais: list.animals.length, animals: filterTypes });
+        } else {
+            return res.status(200).send({ message: "Nenhum animal encontrado com o tipo especificado." });
+        }
+    } else {
+        if (animals.length > 0) {
+            return res.status(200).send({ todosAnimais: list.animals.type == type.length, animals });
+        } else {
+            return res.status(200).send({ message: "Animais não cadastrados" });
+        }
     }
+};
 
-    return res.status(200).send({ message: "Animais não cadastrados" })
-}
 
 export const getAnimalById = (req, res) => {
     const { id } = req.params;
