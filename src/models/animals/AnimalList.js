@@ -11,6 +11,11 @@ export default class AnimalList {
         return this.animals.find((animal) => animal.id === id)
     }
 
+    filterByType(type) {
+        const animal = this.animals.find((animal) => animal.type === type);
+        return animal;
+    }
+
     addAnimal(animal) {
         this.animals.push(animal)
     }
