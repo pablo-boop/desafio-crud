@@ -7,7 +7,7 @@ export const getAnimals = (req, res) => {
     const animals = list.getAnimals();
 
     if(animals.length) {
-        return res.status(200).send({animals})
+        return res.status(200).send(list.animals)
     }
 
     return res.status(200).send({message: "Animais não cadastrados"})
@@ -40,15 +40,16 @@ export const addAnimal = (req, res) => {
         return res.status(400).send({ message: "Tipo de nome inválido!" });
     } else if(!Number.isInteger(age)) {
         return res.status(400).send({ message: "Idade inválida!" });
-    } else if(type != String) {
+    }else if(type == Number) {
         return res.status(400).send({ message: "O tipo precisa ser String!" });
     } else if(type.length > 30) {
         return res.status(400).send({ message: "O tamanho de tipo é inválido!" });
-    } else if(color != String) {
+    } else if(color == Number) {
         return res.status(400).send({ message: "O tipo precisa ser String!" });
-    } else if(color.length > 20) {
+    } 
+    else if(color.length > 20) {
         return res.status(400).send({ message: "O tamanho de cor é inválido!" });
-    } else if(typeof vaccine != Boolean) {
+    } else if(typeof vaccine == Boolean) {
         return res.status(400).send({ message: "o tipo de vacina não está sendo booleano!" });
     } else if(!isURLValida(img)) {
         return res.status(400).send({ message: "URL da imagem é inválido!" });
